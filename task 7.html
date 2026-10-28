@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroMart | Electronics Store</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f5f7fb;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #101828;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        .hero {
+            padding: 65px 7%;
+            background: linear-gradient(120deg, #172554, #0369a1);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 25px;
+        }
+
+        .hero-image {
+            font-size: 120px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #38bdf8;
+            color: #082f49;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #7dd3fc;
+        }
+
+        .section {
+            padding: 45px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 30px;
+            color: #101828;
+        }
+
+        /* Categories */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .category {
+            background-color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #0000000d;
+            text-decoration: none;
+            color: #222;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px #0000001a;
+        }
+
+        .category span {
+            font-size: 42px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Filters */
+
+        .filter-box {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .filter-box label {
+            background-color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            border: 1px solid #d0d5dd;
+            cursor: pointer;
+        }
+
+        .filter-box input {
+            margin-right: 5px;
+        }
+
+        /* Product Cards */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px #0000000d;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px #0000001a;
+        }
+
+        .discount {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #dc2626;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .product-image {
+            background-color: #eef6ff;
+            min-height: 190px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 90px;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+            font-size: 19px;
+        }
+
+        .specs {
+            list-style: none;
+            margin: 12px 0;
+            font-size: 14px;
+            color: #475467;
+        }
+
+        .specs li {
+            border-bottom: 1px solid #eaecf0;
+            padding: 5px 0;
+        }
+
+        .price {
+            font-size: 23px;
+            font-weight: bold;
+            color: #087443;
+            margin-top: 10px;
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: #98a2b3;
+            text-decoration: line-through;
+            margin-left: 6px;
+        }
+
+        .product-link {
+            display: block;
+            text-align: center;
+            background-color: #101828;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 15px;
+        }
+
+        .product-link:hover {
+            background-color: #0369a1;
+        }
+
+        /* Product Details */
+
+        .details-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .detail-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px #0000000d;
+        }
+
+        .detail-card h3 {
+            color: #0369a1;
+            margin-bottom: 12px;
+        }
+
+        .detail-card p {
+            margin-bottom: 8px;
+        }
+
+        /* Comparison Table */
+
+        .table-container {
+            overflow-x: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px #0000000d;
+        }
+
+        table {
+            width: 100%;
+            min-width: 650px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #eaecf0;
+        }
+
+        th {
+            background-color: #101828;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .highlight {
+            color: #087443;
+            font-weight: bold;
+        }
+
+        /* Offers */
+
+        .offer-banner {
+            background: linear-gradient(120deg, #0369a1, #172554);
+            color: white;
+            padding: 35px;
+            text-align: center;
+            border-radius: 12px;
+        }
+
+        .offer-banner h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+
+        footer {
+            background-color: #101828;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        footer a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-image {
+                font-size: 85px;
+            }
+
+            .section {
+                padding: 35px 5%;
+            }
+
+            .section-title {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">⚡ ElectroMart</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#products">Products</a>
+            <a href="#comparison">Compare</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover the Latest Electronics</h1>
+            <p>
+                Explore laptops, smartphones, accessories, and smart devices
+                at amazing prices.
+            </p>
+            <a href="#products" class="btn">Explore Products</a>
+        </div>
+
+        <div class="hero-image">💻 📱</div>
+    </section>
+
+    <!-- Categories -->
+    <section class="section" id="categories">
+        <h2 class="section-title">Shop by Category</h2>
+
+        <div class="categories">
+            <a href="#laptops" class="category">
+                <span>💻</span>
+                <h3>Laptops</h3>
+            </a>
+
+            <a href="#smartphones" class="category">
+                <span>📱</span>
+                <h3>Smartphones</h3>
+            </a>
+
+            <a href="#accessories" class="category">
+                <span>🎧</span>
+                <h3>Accessories</h3>
+            </a>
+
+            <a href="#smartdevices" class="category">
+                <span>⌚</span>
+                <h3>Smart Devices</h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- Product Filters -->
+    <section class="section" id="products">
+        <h2 class="section-title">Our Products</h2>
+
+        <div class="filter-box">
+            <label>
+                <input type="checkbox"> Under ₹5,000
+            </label>
+
+            <label>
+                <input type="checkbox"> ₹5,000–₹30,000
+            </label>
+
+            <label>
+                <input type="checkbox"> ₹30,000+
+            </label>
+
+            <label>
+                <input type="checkbox"> On Discount
+            </label>
+        </div>
+
+        <!-- Laptops -->
+        <h2 class="section-title" id="laptops">💻 Laptops</h2>
+
+        <div class="products">
+
+            <div class="product-card">
+                <span class="discount">20% OFF</span>
+
+                <div class="product-image">💻</div>
+
+                <div class="product-info">
+                    <h3>HP Pavilion Laptop</h3>
+
+                    <ul class="specs">
+                        <li>Processor: Intel Core i5</li>
+                        <li>RAM: 16GB</li>
+                        <li>Storage: 512GB SSD</li>
+                        <li>Display: 15.6-inch FHD</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹59,999
+                        <span class="old-price">₹74,999</span>
+                    </div>
+
+                    <a href="#hp-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount">15% OFF</span>
+
+                <div class="product-image">💻</div>
+
+                <div class="product-info">
+                    <h3>Dell Inspiron Laptop</h3>
+
+                    <ul class="specs">
+                        <li>Processor: Intel Core i7</li>
+                        <li>RAM: 16GB</li>
+                        <li>Storage: 1TB SSD</li>
+                        <li>Display: 15.6-inch FHD</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹74,999
+                        <span class="old-price">₹87,999</span>
+                    </div>
+
+                    <a href="#dell-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Smartphones -->
+        <h2 class="section-title" id="smartphones" style="margin-top: 45px;">
+            📱 Smartphones
+        </h2>
+
+        <div class="products">
+
+            <div class="product-card">
+                <span class="discount">10% OFF</span>
+
+                <div class="product-image">📱</div>
+
+                <div class="product-info">
+                    <h3>Samsung Galaxy S Series</h3>
+
+                    <ul class="specs">
+                        <li>Display: AMOLED</li>
+                        <li>RAM: 8GB</li>
+                        <li>Storage: 256GB</li>
+                        <li>Camera: 50MP main camera</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹49,999
+                        <span class="old-price">₹55,999</span>
+                    </div>
+
+                    <a href="#samsung-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount">12% OFF</span>
+
+                <div class="product-image">📱</div>
+
+                <div class="product-info">
+                    <h3>OnePlus Smartphone</h3>
+
+                    <ul class="specs">
+                        <li>Display: AMOLED</li>
+                        <li>RAM: 12GB</li>
+                        <li>Storage: 256GB</li>
+                        <li>Battery: 5,000mAh</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹39,999
+                        <span class="old-price">₹45,499</span>
+                    </div>
+
+                    <a href="#oneplus-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Accessories -->
+        <h2 class="section-title" id="accessories" style="margin-top: 45px;">
+            🎧 Accessories
+        </h2>
+
+        <div class="products">
+
+            <div class="product-card">
+                <span class="discount">25% OFF</span>
+
+                <div class="product-image">🎧</div>
+
+                <div class="product-info">
+                    <h3>Wireless Headphones</h3>
+
+                    <ul class="specs">
+                        <li>Connection: Bluetooth</li>
+                        <li>Battery: Up to 30 hours</li>
+                        <li>Feature: Noise reduction</li>
+                        <li>Charging: USB-C</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹2,999
+                        <span class="old-price">₹3,999</span>
+                    </div>
+
+                    <a href="#headphones-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount">20% OFF</span>
+
+                <div class="product-image">⌨️</div>
+
+                <div class="product-info">
+                    <h3>Wireless Keyboard</h3>
+
+                    <ul class="specs">
+                        <li>Connection: Bluetooth / USB receiver</li>
+                        <li>Layout: Full-size</li>
+                        <li>Battery: Long-lasting</li>
+                        <li>Compatibility: Windows / Mac</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹1,599
+                        <span class="old-price">₹1,999</span>
+                    </div>
+
+                    <a href="#keyboard-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Smart Devices -->
+        <h2 class="section-title" id="smartdevices" style="margin-top: 45px;">
+            ⌚ Smart Devices
+        </h2>
+
+        <div class="products">
+
+            <div class="product-card">
+                <span class="discount">18% OFF</span>
+
+                <div class="product-image">⌚</div>
+
+                <div class="product-info">
+                    <h3>Smart Watch</h3>
+
+                    <ul class="specs">
+                        <li>Display: Touchscreen</li>
+                        <li>Features: Activity tracking</li>
+                        <li>Connectivity: Bluetooth</li>
+                        <li>Battery: Up to 7 days</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹3,299
+                        <span class="old-price">₹3,999</span>
+                    </div>
+
+                    <a href="#watch-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <span class="discount">15% OFF</span>
+
+                <div class="product-image">🔊</div>
+
+                <div class="product-info">
+                    <h3>Smart Speaker</h3>
+
+                    <ul class="specs">
+                        <li>Connectivity: Wi-Fi / Bluetooth</li>
+                        <li>Audio: 360-degree sound</li>
+                        <li>Control: Voice commands</li>
+                        <li>Use: Smart home assistance</li>
+                    </ul>
+
+                    <div class="price">
+                        ₹4,249
+                        <span class="old-price">₹4,999</span>
+                    </div>
+
+                    <a href="#speaker-details" class="product-link">
+                        View Details
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <section class="section" id="details">
+        <h2 class="section-title">Product Details</h2>
+
+        <div class="details-container">
+
+            <div class="detail-card" id="hp-details">
+                <h3>HP Pavilion Laptop</h3>
+                <p><strong>Category:</strong> Laptop</p>
+                <p><strong>Processor:</strong> Intel Core i5</p>
+                <p><strong>Memory:</strong> 16GB RAM</p>
+                <p><strong>Storage:</strong> 512GB SSD</p>
+                <p><strong>Display:</strong> 15.6-inch Full HD</p>
+                <p><strong>Price:</strong> ₹59,999</p>
+                <p class="highlight">Discount: 20% OFF</p>
+            </div>
+
+            <div class="detail-card" id="dell-details">
+                <h3>Dell Inspiron Laptop</h3>
+                <p><strong>Category:</strong> Laptop</p>
+                <p><strong>Processor:</strong> Intel Core i7</p>
+                <p><strong>Memory:</strong> 16GB RAM</p>
+                <p><strong>Storage:</strong> 1TB SSD</p>
+                <p><strong>Display:</strong> 15.6-inch Full HD</p>
+                <p><strong>Price:</strong> ₹74,999</p>
+                <p class="highlight">Discount: 15% OFF</p>
+            </div>
+
+            <div class="detail-card" id="samsung-details">
+                <h3>Samsung Galaxy Smartphone</h3>
+                <p><strong>Category:</strong> Smartphone</p>
+                <p><strong>Display:</strong> AMOLED</p>
+                <p><strong>RAM:</strong> 8GB</p>
+                <p><strong>Storage:</strong> 256GB</p>
+                <p><strong>Camera:</strong> 50MP main camera</p>
+                <p><strong>Price:</strong> ₹49,999</p>
+                <p class="highlight">Discount: 10% OFF</p>
+            </div>
+
+            <div class="detail-card" id="oneplus-details">
+                <h3>OnePlus Smartphone</h3>
+                <p><strong>Category:</strong> Smartphone</p>
+                <p><strong>Display:</strong> AMOLED</p>
+                <p><strong>RAM:</strong> 12GB</p>
+                <p><strong>Storage:</strong> 256GB</p>
+                <p><strong>Battery:</strong> 5,000mAh</p>
+                <p><strong>Price:</strong> ₹39,999</p>
+                <p class="highlight">Discount: 12% OFF</p>
+            </div>
+
+            <div class="detail-card" id="headphones-details">
+                <h3>Wireless Headphones</h3>
+                <p><strong>Category:</strong> Accessories</p>
+                <p><strong>Connection:</strong> Bluetooth</p>
+                <p><strong>Battery:</strong> Up to 30 hours</p>
+                <p><strong>Feature:</strong> Noise reduction</p>
+                <p><strong>Charging:</strong> USB-C</p>
+                <p><strong>Price:</strong> ₹2,999</p>
+                <p class="highlight">Discount: 25% OFF</p>
+            </div>
+
+            <div class="detail-card" id="keyboard-details">
+                <h3>Wireless Keyboard</h3>
+                <p><strong>Category:</strong> Accessories</p>
+                <p><strong>Connection:</strong> Bluetooth / USB receiver</p>
+                <p><strong>Layout:</strong> Full-size</p>
+                <p><strong>Compatibility:</strong> Windows / Mac</p>
+                <p><strong>Price:</strong> ₹1,599</p>
+                <p class="highlight">Discount: 20% OFF</p>
+            </div>
+
+            <div class="detail-card" id="watch-details">
+                <h3>Smart Watch</h3>
+                <p><strong>Category:</strong> Smart Device</p>
+                <p><strong>Display:</strong> Touchscreen</p>
+                <p><strong>Features:</strong> Activity tracking</p>
+                <p><strong>Connectivity:</strong> Bluetooth</p>
+                <p><strong>Price:</strong> ₹3,299</p>
+                <p class="highlight">Discount: 18% OFF</p>
+            </div>
+
+            <div class="detail-card" id="speaker-details">
+                <h3>Smart Speaker</h3>
+                <p><strong>Category:</strong> Smart Device</p>
+                <p><strong>Connectivity:</strong> Wi-Fi / Bluetooth</p>
+                <p><strong>Audio:</strong> 360-degree sound</p>
+                <p><strong>Control:</strong> Voice commands</p>
+                <p><strong>Price:</strong> ₹4,249</p>
+                <p class="highlight">Discount: 15% OFF</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="section" id="comparison">
+        <h2 class="section-title">Compare Products</h2>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th>HP Pavilion</th>
+                        <th>Dell Inspiron</th>
+                        <th>Samsung Galaxy</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>Category</td>
+                        <td>Laptop</td>
+                        <td>Laptop</td>
+                        <td>Smartphone</td>
+                    </tr>
+
+                    <tr>
+                        <td>Processor</td>
+                        <td>Intel Core i5</td>
+                        <td>Intel Core i7</td>
+                        <td>Model-dependent</td>
+                    </tr>
+
+                    <tr>
+                        <td>RAM</td>
+                        <td>16GB</td>
+                        <td>16GB</td>
+                        <td>8GB</td>
+                    </tr>
+
+                    <tr>
+                        <td>Storage</td>
+                        <td>512GB SSD</td>
+                        <td>1TB SSD</td>
+                        <td>256GB</td>
+                    </tr>
+
+                    <tr>
+                        <td>Display</td>
+                        <td>15.6-inch FHD</td>
+                        <td>15.6-inch FHD</td>
+                        <td>AMOLED</td>
+                    </tr>
+
+                    <tr>
+                        <td>Price</td>
+                        <td>₹59,999</td>
+                        <td>₹74,999</td>
+                        <td>₹49,999</td>
+                    </tr>
+
+                    <tr>
+                        <td>Discount</td>
+                        <td class="highlight">20% OFF</td>
+                        <td class="highlight">15% OFF</td>
+                        <td class="highlight">10% OFF</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="section">
+        <div class="offer-banner">
+            <h2>Special Electronics Deals!</h2>
+            <p>Discover great offers on selected electronics.</p>
+            <br>
+            <a href="#products" class="btn">Explore Deals</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <h2>⚡ ElectroMart</h2>
+        <p>Your destination for electronics and smart devices.</p>
+        <p>Email: support@electromart.example</p>
+        <p>© 2026 ElectroMart. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
