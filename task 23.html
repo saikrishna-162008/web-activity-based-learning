@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameZone | Ultimate Gaming Portal</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #080b14;
+            color: #f4f6ff;
+            line-height: 1.6;
+        }
+
+        :root {
+            --background: #080b14;
+            --card: #111827;
+            --card-light: #182235;
+            --primary: #00f5d4;
+            --secondary: #9b5cff;
+            --muted: #9ca3af;
+            --border: #273449;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+
+        header {
+            background: #0d1220;
+            border-bottom: 1px solid var(--border);
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #d1d5db;
+            font-size: 14px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .live-button {
+            background: var(--primary);
+            color: #061018;
+            padding: 10px 17px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 480px;
+            padding: 70px 7%;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, #080b14 10%, #080b14e8 48%, #080b1430),
+                url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1600&q=85");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 680px;
+        }
+
+        .eyebrow {
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 62px);
+            line-height: 1.1;
+            margin: 18px 0;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            text-shadow: 0 0 25px #00f5d455;
+        }
+
+        .hero p {
+            max-width: 550px;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 5px 8px 5px 0;
+            transition: 0.3s;
+        }
+
+        .button-primary {
+            color: #061018;
+            background: var(--primary);
+        }
+
+        .button-secondary {
+            color: white;
+            border: 1px solid #64748b;
+            background: #111827a8;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px #00f5d433;
+        }
+
+        /* General Sections */
+
+        .section {
+            padding: 48px 7%;
+        }
+
+        .section-heading {
+            margin-bottom: 26px;
+        }
+
+        .section-heading h2 {
+            font-size: 29px;
+        }
+
+        .section-heading h2 span {
+            color: var(--primary);
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .section-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .small-link {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Stats */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 18px;
+            padding: 0 7%;
+            margin-top: -28px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: var(--card);
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            box-shadow: 0 8px 25px #00000035;
+        }
+
+        .stat-card h2 {
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .stat-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Game Profiles */
+
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 23px;
+        }
+
+        .game-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--primary);
+            box-shadow: 0 0 25px #00f5d41c;
+        }
+
+        .game-image {
+            height: 190px;
+            overflow: hidden;
+            position: relative;
+            background: var(--card-light);
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.08);
+        }
+
+        .game-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--primary);
+            color: #061018;
+            padding: 5px 9px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .game-info {
+            padding: 19px;
+        }
+
+        .game-info h3 {
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .game-info p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .game-tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: #202b3d;
+            color: #cbd5e1;
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-size: 11px;
+        }
+
+        /* Tournament Schedule */
+
+        .schedule-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .tournament {
+            display: grid;
+            grid-template-columns: 90px 1fr auto;
+            align-items: center;
+            gap: 20px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        .tournament:hover {
+            border-color: var(--secondary);
+        }
+
+        .date-box {
+            background: #202b3d;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .date-box strong {
+            display: block;
+            font-size: 23px;
+            color: var(--primary);
+        }
+
+        .date-box span {
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .tournament-info h3 {
+            margin-bottom: 4px;
+        }
+
+        .tournament-info p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .prize {
+            color: var(--primary);
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .prize span {
+            display: block;
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: normal;
+        }
+
+        /* Tables */
+
+        .table-container {
+            overflow-x: auto;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--primary);
+            background: #151e2e;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        td {
+            font-size: 14px;
+            color: #e5e7eb;
+        }
+
+        tbody tr {
+            transition: background 0.2s;
+        }
+
+        tbody tr:hover {
+            background: #1a2639;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .rank {
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .positive {
+            color: #4ade80;
+            font-weight: bold;
+        }
+
+        .team-name {
+            font-weight: bold;
+        }
+
+        .team-game {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        /* Teams */
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .team-card {
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            background: linear-gradient(145deg, #182235, #101622);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .team-logo {
+            width: 78px;
+            height: 78px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: #25223f;
+            color: var(--primary);
+            font-size: 34px;
+            font-weight: bold;
+        }
+
+        .team-card h3 {
+            margin-bottom: 5px;
+        }
+
+        .team-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .team-score {
+            display: inline-block;
+            margin-top: 15px;
+            background: #202b3d;
+            color: var(--primary);
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Player Profiles */
+
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .player-card {
+            padding: 23px;
+            text-align: center;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .player-avatar {
+            width: 95px;
+            height: 95px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            background: linear-gradient(135deg, #24334b, #4c2c75);
+            border: 2px solid var(--primary);
+        }
+
+        .player-card h3 {
+            margin-bottom: 4px;
+        }
+
+        .player-card p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 17px;
+        }
+
+        .player-stats strong {
+            display: block;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .player-stats span {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        /* News */
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 23px;
+        }
+
+        .news-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .news-image {
+            height: 175px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.06);
+        }
+
+        .news-info {
+            padding: 19px;
+        }
+
+        .news-info small {
+            color: var(--primary);
+        }
+
+        .news-info h3 {
+            font-size: 18px;
+            margin: 8px 0;
+        }
+
+        .news-info p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        /* Call to Action */
+
+        .cta {
+            margin: 10px 7% 50px;
+            padding: 40px 25px;
+            text-align: center;
+            border: 1px solid #30445b;
+            border-radius: 14px;
+            background:
+                radial-gradient(circle at top right, #713cff30, transparent 40%),
+                linear-gradient(120deg, #101c2c, #111827);
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .cta h2 span {
+            color: var(--primary);
+        }
+
+        .cta p {
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+
+        footer {
+            padding: 32px 7%;
+            background: #06080e;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer .logo {
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 13px;
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: var(--primary);
+        }
+
+        /* Responsive Layout */
+
+        @media (max-width: 700px) {
+            header {
+                justify-content: center;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 13px;
+            }
+
+            .hero {
+                text-align: center;
+                padding: 55px 5%;
+                background-position: center;
+            }
+
+            .hero-content {
+                margin: auto;
+            }
+
+            .section {
+                padding: 35px 5%;
+            }
+
+            .stats {
+                padding: 0 5%;
+            }
+
+            .tournament {
+                grid-template-columns: 70px 1fr;
+                gap: 12px;
+            }
+
+            .prize {
+                grid-column: 2;
+                text-align: left;
+            }
+
+            .section-heading h2 {
+                font-size: 25px;
+            }
+
+            .cta {
+                margin: 10px 5% 35px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .game-grid,
+            .team-grid,
+            .player-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tournament {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <a href="#home" class="logo">GAME<span>ZONE</span></a>
+
+        <nav>
+            <a href="#games">Games</a>
+            <a href="#tournaments">Tournaments</a>
+            <a href="#leaderboard">Leaderboard</a>
+            <a href="#teams">Teams</a>
+            <a href="#news">News</a>
+        </nav>
+
+        <a href="#tournaments" class="live-button">⚡ Esports Hub</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <span class="eyebrow">Level up your game</span>
+
+            <h1>ENTER THE <span>GAMING</span> UNIVERSE</h1>
+
+            <p>
+                Your ultimate destination for competitive gaming,
+                esports tournaments, pro players, global rankings,
+                and the latest gaming news.
+            </p>
+
+            <a href="#games" class="button button-primary">
+                Explore Games →
+            </a>
+
+            <a href="#leaderboard" class="button button-secondary">
+                View Rankings
+            </a>
+        </div>
+    </section>
+
+    <!-- Portal Statistics -->
+    <section class="stats">
+        <div class="stat-card">
+            <h2>12+</h2>
+            <p>Featured Games</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>50+</h2>
+            <p>Esports Teams</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>100+</h2>
+            <p>Pro Players</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>24/7</h2>
+            <p>Gaming Community</p>
+        </div>
+    </section>
+
+    <!-- Game Profiles -->
+    <section class="section" id="games">
+        <div class="section-heading section-top">
+            <div>
+                <h2>Featured <span>Games</span></h2>
+                <p>Explore popular games and discover your next challenge.</p>
+            </div>
+            <a href="#news" class="small-link">Latest updates →</a>
+        </div>
+
+        <div class="game-grid">
+
+            <article class="game-card">
+                <div class="game-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=85"
+                        alt="Competitive esports gaming setup"
+                        loading="lazy">
+                    <span class="game-badge">POPULAR</span>
+                </div>
+                <div class="game-info">
+                    <h3>Free Fire</h3>
+                    <p>Battle royale action with survival challenges,
+                        squad battles, and competitive matches.</p>
+                    <div class="game-tags">
+                        <span class="tag">Battle Royale</span>
+                        <span class="tag">Mobile</span>
+                        <span class="tag">Esports</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="game-card">
+                <div class="game-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=800&q=85"
+                        alt="Gaming monitor and computer setup"
+                        loading="lazy">
+                    <span class="game-badge">COMPETITIVE</span>
+                </div>
+                <div class="game-info">
+                    <h3>Valorant</h3>
+                    <p>A tactical shooter where teamwork, precision,
+                        strategy, and abilities decide the winner.</p>
+                    <div class="game-tags">
+                        <span class="tag">FPS</span>
+                        <span class="tag">PC</span>
+                        <span class="tag">Ranked</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="game-card">
+                <div class="game-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1603481546238-487240415921?auto=format&fit=crop&w=800&q=85"
+                        alt="Gaming controller and colorful lighting"
+                        loading="lazy">
+                    <span class="game-badge">MULTIPLAYER</span>
+                </div>
+                <div class="game-info">
+                    <h3>PUBG: Battlegrounds</h3>
+                    <p>Land on the battlefield, collect equipment,
+                        and outlast opponents to claim victory.</p>
+                    <div class="game-tags">
+                        <span class="tag">Battle Royale</span>
+                        <span class="tag">PC / Console</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="game-card">
+                <div class="game-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=800&q=85"
+                        alt="Gaming equipment with RGB lighting"
+                        loading="lazy">
+                    <span class="game-badge">ACTION</span>
+                </div>
+                <div class="game-info">
+                    <h3>Call of Duty</h3>
+                    <p>Fast-paced combat, multiplayer battles,
+                        and tactical missions for action fans.</p>
+                    <div class="game-tags">
+                        <span class="tag">FPS</span>
+                        <span class="tag">Action</span>
+                        <span class="tag">Multiplayer</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Esports Tournament Schedule -->
+    <section class="section" id="tournaments">
+        <div class="section-heading">
+            <h2>Esports <span>Tournament Schedule</span></h2>
+            <p>Example schedule cards for upcoming competitive events.</p>
+        </div>
+
+        <div class="schedule-list">
+
+            <article class="tournament">
+                <div class="date-box">
+                    <strong>08</strong>
+                    <span>NOV 2026</span>
+                </div>
+                <div class="tournament-info">
+                    <h3>Battle Royale Championship</h3>
+                    <p>Game: Free Fire • Format: Squad • Online Qualifiers</p>
+                    <p>Start time: 6:00 PM IST</p>
+                </div>
+                <div class="prize">
+                    ₹5,00,000
+                    <span>Sample prize pool</span>
+                </div>
+            </article>
+
+            <article class="tournament">
+                <div class="date-box">
+                    <strong>15</strong>
+                    <span>NOV 2026</span>
+                </div>
+                <div class="tournament-info">
+                    <h3>Tactical Masters Cup</h3>
+                    <p>Game: Valorant • Format: 5v5 • Online</p>
+                    <p>Start time: 7:00 PM IST</p>
+                </div>
+                <div class="prize">
+                    ₹10,00,000
+                    <span>Sample prize pool</span>
+                </div>
+            </article>
+
+            <article class="tournament">
+                <div class="date-box">
+                    <strong>22</strong>
+                    <span>NOV 2026</span>
+                </div>
+                <div class="tournament-info">
+                    <h3>Squad Survival Showdown</h3>
+                    <p>Game: PUBG: Battlegrounds • Format: Squad</p>
+                    <p>Start time: 5:30 PM IST</p>
+                </div>
+                <div class="prize">
+                    ₹7,50,000
+                    <span>Sample prize pool</span>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Team Information -->
+    <section class="section" id="teams">
+        <div class="section-heading">
+            <h2>Featured <span>Teams</span></h2>
+            <p>Example esports team profiles and game specializations.</p>
+        </div>
+
+        <div class="team-grid">
+
+            <article class="team-card">
+                <div class="team-logo">⚡</div>
+                <h3>Team Thunder</h3>
+                <p>Game: Free Fire</p>
+                <p>Style: Aggressive squad play</p>
+                <span class="team-score">TEAM PROFILE</span>
+            </article>
+
+            <article class="team-card">
+                <div class="team-logo">🐉</div>
+                <h3>Dragon Esports</h3>
+                <p>Game: Valorant</p>
+                <p>Style: Tactical coordination</p>
+                <span class="team-score">TEAM PROFILE</span>
+            </article>
+
+            <article class="team-card">
+                <div class="team-logo">👑</div>
+                <h3>Royal Legends</h3>
+                <p>Game: PUBG: Battlegrounds</p>
+                <p>Style: Strategic survival</p>
+                <span class="team-score">TEAM PROFILE</span>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Player Profiles -->
+    <section class="section" id="players">
+        <div class="section-heading">
+            <h2>Pro <span>Player Profiles</span></h2>
+            <p>Sample player cards showing competitive statistics.</p>
+        </div>
+
+        <div class="player-grid">
+
+            <article class="player-card">
+                <div class="player-avatar">🎯</div>
+                <h3>ShadowX</h3>
+                <p>Team Thunder • Free Fire</p>
+                <div class="player-stats">
+                    <div>
+                        <strong>4.8</strong>
+                        <span>K/D SAMPLE</span>
+                    </div>
+                    <div>
+                        <strong>72%</strong>
+                        <span>WIN RATE</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="player-card">
+                <div class="player-avatar">⚔️</div>
+                <h3>Blaze</h3>
+                <p>Dragon Esports • Valorant</p>
+                <div class="player-stats">
+                    <div>
+                        <strong>285</strong>
+                        <span>ACS SAMPLE</span>
+                    </div>
+                    <div>
+                        <strong>68%</strong>
+                        <span>WIN RATE</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="player-card">
+                <div class="player-avatar">🛡️</div>
+                <h3>Phantom</h3>
+                <p>Royal Legends • PUBG</p>
+                <div class="player-stats">
+                    <div>
+                        <strong>5.2</strong>
+                        <span>K/D SAMPLE</span>
+                    </div>
+                    <div>
+                        <strong>65%</strong>
+                        <span>TOP 10 RATE</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="player-card">
+                <div class="player-avatar">🔥</div>
+                <h3>Viper</h3>
+                <p>Independent • Multi-game</p>
+                <div class="player-stats">
+                    <div>
+                        <strong>92</strong>
+                        <span>LEVEL SAMPLE</span>
+                    </div>
+                    <div>
+                        <strong>80%</strong>
+                        <span>ACTIVITY</span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Global Leaderboard -->
+    <section class="section" id="leaderboard">
+        <div class="section-heading">
+            <h2>Global <span>Leaderboard</span></h2>
+            <p>Example rankings for demonstrating structured esports tables.</p>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Team</th>
+                        <th>Game</th>
+                        <th>Matches</th>
+                        <th>Wins</th>
+                        <th>Points</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class="rank">#1</td>
+                        <td class="team-name">Team Thunder</td>
+                        <td>Free Fire</td>
+                        <td>20</td>
+                        <td class="positive">16</td>
+                        <td>2480</td>
+                    </tr>
+
+                    <tr>
+                        <td class="rank">#2</td>
+                        <td class="team-name">Dragon Esports</td>
+                        <td>Valorant</td>
+                        <td>18</td>
+                        <td class="positive">14</td>
+                        <td>2310</td>
+                    </tr>
+
+                    <tr>
+                        <td class="rank">#3</td>
+                        <td class="team-name">Royal Legends</td>
+                        <td>PUBG</td>
+                        <td>22</td>
+                        <td class="positive">15</td>
+                        <td>2190</td>
+                    </tr>
+
+                    <tr>
+                        <td class="rank">#4</td>
+                        <td class="team-name">Nova Gaming</td>
+                        <td>Call of Duty</td>
+                        <td>19</td>
+                        <td class="positive">12</td>
+                        <td>1985</td>
+                    </tr>
+
+                    <tr>
+                        <td class="rank">#5</td>
+                        <td class="team-name">Phoenix Squad</td>
+                        <td>Free Fire</td>
+                        <td>20</td>
+                        <td class="positive">11</td>
+                        <td>1840</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Gaming News -->
+    <section class="section" id="news">
+        <div class="section-heading">
+            <h2>Latest Gaming <span>News</span></h2>
+            <p>Sample editorial cards for your gaming news section.</p>
+        </div>
+
+        <div class="news-grid">
+
+            <article class="news-card">
+                <div class="news-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=85"
+                        alt="Esports competition stage"
+                        loading="lazy">
+                </div>
+                <div class="news-info">
+                    <small>ESPORTS • 5 MIN READ</small>
+                    <h3>Esports Competition Heats Up</h3>
+                    <p>
+                        Teams prepare new strategies as the competitive
+                        gaming season approaches.
+                    </p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=800&q=85"
+                        alt="Gaming computer setup"
+                        loading="lazy">
+                </div>
+                <div class="news-info">
+                    <small>HARDWARE • 4 MIN READ</small>
+                    <h3>Build Your Ultimate Gaming Setup</h3>
+                    <p>
+                        Learn about monitors, peripherals, and hardware
+                        choices for a better gaming experience.
+                    </p>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <div class="news-image">
+                    <img
+                        src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=800&q=85"
+                        alt="RGB gaming peripherals"
+                        loading="lazy">
+                </div>
+                <div class="news-info">
+                    <small>GAMING • 3 MIN READ</small>
+                    <h3>Practice Smarter, Play Better</h3>
+                    <p>
+                        Explore practice routines, team communication,
+                        and ways to improve your gameplay.
+                    </p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <h2>Ready to <span>Level Up?</span></h2>
+        <p>Explore games, follow your favorite teams, and track rankings.</p>
+        <a href="#games" class="button button-primary">Start Exploring →</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">GAME<span>ZONE</span></div>
+        <p>Your destination for gaming, esports, teams, and players.</p>
+        <p>
+            <a href="#home">Home</a> |
+            <a href="#games">Games</a> |
+            <a href="#tournaments">Tournaments</a> |
+            <a href="#leaderboard">Leaderboard</a>
+        </p>
+        <p>© 2026 GameZone. All rights reserved.</p>
+        <p>Demo content: schedules, player statistics, and rankings are illustrative.</p>
+    </footer>
+
+</body>
+</html>
